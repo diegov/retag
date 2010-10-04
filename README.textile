@@ -21,5 +21,5 @@ h3. Examples
 <pre>
 retag "album=(artist + album)" file.mp3
 retag "album='My album'" file.mp3
-retag "track=2"
+retag "tracknumber=2"
 </pre>
