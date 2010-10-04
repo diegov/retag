@@ -10,5 +10,9 @@ tmp/**/*
 
 # python files
 *.pyc
-*.pyc~
+*.*~
 *.py~
+
+.autonose-depends.pickle
+
+*.mp3

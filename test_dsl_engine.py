@@ -53,20 +53,20 @@ class DSLEngineTests(unittest.TestCase):
         self.assertEqual(1003, self._context.get_tag_value('new_val'))
 
     def test_can_set_tag_to_literal_string(self):
-        script = 'new_val="whats up"'
+        script = "new_val='whats up'"
         self._engine.execute(script)
         self.assertEqual('whats up', self._context.get_tag_value('new_val'))
 
     def test_can_set_tag_to_concat_literal_string_and_tag_value(self):
         self._context.set_tag_value('crap', 'first')
-        script = 'new_val=(crap + " second")'
+        script = "new_val=(crap + ' second')"
         self._engine.execute(script)
         self.assertEqual('first second', self._context.get_tag_value('new_val'))
 
     def test_can_set_tag_to_concat_of_two_other_tags(self):
         self._context.set_tag_value('crap', 'first')
         self._context.set_tag_value('other', 'segundo')
-        script = 'new_val=(crap + (" " + other))'
+        script = "new_val=(crap + (' ' + other))"
         self._engine.execute(script)
         self.assertEqual('first segundo', self._context.get_tag_value('new_val'))
 

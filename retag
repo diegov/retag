@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+import sys
+from tag_context import TagContext
+from dsl_engine import DSLEngine
+
+def main():
+    if len(sys.argv) < 3:
+        print "Usage: %s [action] file [file]*" % (sys.argv[0])
+        exit(1)
+
+    action = sys.argv[1]
+
+    for i in range(2, len(sys.argv)):
+        file_name = sys.argv[i]
+        c = TagContext(file_name)
+        engine = DSLEngine(c)
+        engine.execute(action)
+        c.save()
+
+if __name__ == "__main__":
+    main()

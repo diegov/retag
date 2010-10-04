@@ -35,7 +35,7 @@ class DSLEngine(object):
         tag_name.setName('tag_name')
         tag_name.setParseAction(lambda t: tag_reference.TagReference(t[0]))
 
-        quoted_string = QuotedString('"')
+        quoted_string = QuotedString("'")
         quoted_string.setParseAction(lambda s: self.to_literal(s[0]))
 
         oper = oneOf('+ * / -')
