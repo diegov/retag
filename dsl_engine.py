@@ -1,5 +1,5 @@
 from pyparsing import alphas, alphanums, Word, Forward, nums, Optional, OneOrMore, Group, Regex, Combine, oneOf, Literal, QuotedString
-from ast import ast_node, literal_value, tag_reference, assignment, arith
+from ast import ast_node, literal_value, tag_reference, assignment, arith, print_tags
 
 class DSLEngine(object):
     
@@ -14,6 +14,9 @@ class DSLEngine(object):
 
     def to_arith(self, left, oper, right):
         return arith.Arith(left, oper, right)
+
+    def to_print_tags(self):
+        return print_tags.PrintTags()
 
     def _build_grammar(self):
         expr = Forward()
@@ -52,7 +55,10 @@ class DSLEngine(object):
         assign.setName('assign')
         assign.setParseAction(lambda x: self.to_assign(x[0],x[2]))
 
-        expr <<(arith|assign|tag_name|num|quoted_string)
+        print_tags = Literal('?')
+        print_tags.setParseAction(lambda x: self.to_print_tags())
+
+        expr <<(arith|assign|tag_name|num|quoted_string|print_tags)
         expr.setParseAction(lambda x: x[0])
         return expr
 

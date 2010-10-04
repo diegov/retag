@@ -38,4 +38,8 @@ class TagContext(object):
     def save(self):
         self._tag.save()
 
+    def print_tags(self):
+        for tag_key in self._tag.keys():
+            print "%s: %s" % (tag_key, str(self._tag[tag_key]))
+
         

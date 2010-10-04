@@ -4,6 +4,7 @@ from dsl_engine import DSLEngine
 class FakeContext(object):
     def __init__(self):
         self._values = {}
+        self.printed_tag_times = 0
 
     def set_tag_value(self, tag_name, tag_value):
         self._values[tag_name] = tag_value
@@ -12,6 +13,9 @@ class FakeContext(object):
         if self._values.has_key(tag_name):
             return self._values[tag_name]
         else: return None
+
+    def print_tags(self):
+        self.printed_tag_times += 1
 
 class DSLEngineTests(unittest.TestCase):
     """Unit tests for the DSLRuntime class."""
@@ -69,6 +73,11 @@ class DSLEngineTests(unittest.TestCase):
         script = "new_val=(crap + (' ' + other))"
         self._engine.execute(script)
         self.assertEqual('first segundo', self._context.get_tag_value('new_val'))
+
+    def test_can_print_all_tags(self):
+        script = "?"
+        self._engine.execute(script)
+        self.assertEqual(1, self._context.printed_tag_times)
 
 if __name__ == "__main__":
     unittest.main()
