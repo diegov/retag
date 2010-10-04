@@ -1,0 +1,25 @@
+h2. What's this
+
+A very simple command line tool for working on mp3 tags. Unfinished
+
+h2. Dependencies
+
+* Python 2.6
+* "pyparsing":http://pyparsing.wikispaces.com/ 
+* "mutagen":http://code.google.com/p/mutagen/
+
+h2. Installation
+
+TODO: package
+
+h2. Usage
+
+retag action file
+
+h3. Examples
+
+<pre>
+retag "album=(artist + album)" file.mp3
+retag "album='My album'" file.mp3
+retag "track=2"
+</pre>
